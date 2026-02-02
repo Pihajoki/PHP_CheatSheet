@@ -1,0 +1,13 @@
+body{
+    background-color: grey;
+}
+
+.error{
+    color:red;
+    font-size: xx-large;
+}
+
+.lasku{
+    color:greenyellow;
+    font-size:xx-large
+}
