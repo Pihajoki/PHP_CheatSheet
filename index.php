@@ -1,3 +1,6 @@
+<?php
+declare(strict_types=1); // Forces our function to use data we mean it to use.
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -553,7 +556,62 @@ echo "<h2><b>User defined Functions (objects)</b></h2>";
 
     // Function is meant to do ONLY ONE THING
 
+    strlen("Roni"); // Would print the amount of char inside "Roni". So it would be 4.
+
+
+    // We create an function
+    function sayHello() {
+        return "Hello World!"; // Never Echo from function.
+    }
+
     
+    echo sayHello() . "<br>"; // We call the value of the function by printing it.
+
+
+    // sign the value of the function to $hW
+    $hW = sayHello();
+    echo $hW . "<br>"; // we test that $hW received the value.
+
+
+
+    function sayName($greetings, $name) {
+        return $greetings . " " . $name . "!"; // We can add data to our function like this.
+    }
+
+
+    $sN = sayName("terve", "Roni"); // We send data to the function.
+    echo $sN . "<br>";
+
+
+
+    function forceString(string $nimi) { // This forces user to use string when sending data to our function.
+        return $nimi;
+    }
+
+    echo forceString("FORCED") . "<br>";
+
+    // !!!!!!!!!!!! LINE 1 !!!!!!!!!!!!!
+    // We declare strict_types in line 1
+    // !!!!!!!!!!!! LINE 1 !!!!!!!!!!!!!
+
+
+    function calculator(int $num1, $num2) {
+        $result = $num1 + $num2;
+        return $result;
+    }
+    
+    $numbers = calculator(13, 15);
+    echo $numbers . "<br>";
+
+
+    $saari = "Korkeasaari"; // We define normal string variable.
+    
+    function saarenmaa(){ // Function scope is only inside it without "global"
+        global $saari; // Global makes it possible for function saarenmaa to see $saari and use it.
+        return $saari;
+    }
+
+    echo saarenmaa() . "<br>";
 
         ?>
     </main>
