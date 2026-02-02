@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Cheat Sheet</title>
     <link rel="stylesheet" href="css/main.css">
@@ -310,6 +311,249 @@ echo "<h2><b>Control structures in PHP</b></h2>";
         echo $result;
 
 
+
+
+// Arrays
+echo "<br>";
+echo "<h2><b>Arrays</b></h2>";
+
+
+    echo "<br>";
+    echo "<h3><b>Default Array</b></h3>";
+        // First way to make an array
+        $fruits = array("Apple", "Banana", "Cherry", "Pear");
+
+            // Second way to make an array
+        $fruits2 = ["Apple", "Banana", "Cherry", "Pear"];
+
+            // Same as second way, but can be easier to see as a list.
+        $fruits2 = [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Pear"
+                    ];
+    
+        // Print single index in the array, here we print "Banana"
+        echo $fruits[1] . "<br>";
+
+        // Can add values to our array later on.
+        $fruits[] = "Orange";
+
+        // Prit the proof that ORange has been added.
+        echo $fruits[4] . "<br>";
+
+        // Instead of adding "Kiwi" to fruits, we can replace lets say "Banana" in index 1
+        $fruits[1] = "Kiwi";
+        echo $fruits[1] . "<br>"; // Proof that it replaced it.
+
+        // How to remove data from an index. So this removes Kiwi and moves Cherry from [2] to [1]
+        array_splice($fruits, 0, 1);
+        echo $fruits[1] . "<br>";
+
+
+        // We are not deleting data now, but we are adding data.
+        // (array name, index we effect, the range of effect, What se are adding there.)
+        array_splice($fruits, 1, 0, "Dragonfruit");
+        // Here is a comparison what happens if we change the values:
+        //($fruits, 1, 0, "Dragonfruit") prints Array ( [0] => Kiwi [1] => Dragonfruit [2] => Cherry [3] => Pear [4] => Orange )
+        //($fruits, 1, 1, "Dragonfruit") prints Array ( [0] => Kiwi [1] => Dragonfruit [2] => Pear [3] => Orange )
+        //($fruits, 0, 1, "Dragonfruit") prints Array ( [0] => Dragonfruit [1] => Cherry [2] => Pear [3] => Orange )
+        //($fruits, 1, 2, "Dragonfruit") prints Array ( [0] => Kiwi [1] => Dragonfruit [2] => Orange )
+        //($fruits, 1, 3, "Dragonfruit") prints Array ( [0] => Kiwi [1] => Dragonfruit)
+        //($fruits, 0, 4, "Dragonfruit") prints Array ( [0] => Dragonfruit )
+
+        print_r($fruits); // Array ( [0] => Kiwi [1] => Dragonfruit [2] => Cherry [3] => Pear [4] => Orange )
+        echo "<br>";
+
+        // Create another array
+        $test = ["Starberry", "Banana", "Lemon"];
+
+        // Now lets combine there two arrays.
+        array_splice($fruits, 2, 0, $test);
+        print_r($fruits);
+        // Array ( [0] => Kiwi [1] => Dragonfruit [2] => Starberry [3] => Banana [4] => Lemon [5] => Cherry [6] => Pear [7] => Orange )
+        echo "<br>";
+
+
+
+
+
+
+    // Asociate Array
+        echo "<br>";
+        echo "<h2><b>Asociate Array</b></h2>";
+
+        $tasks = [
+            "Laundry" => "Roni",
+            "Paying bills" => "Dimi",
+            "Baking" => "Janika",
+            "Dishes" => "Mankka"
+        ];
+
+        echo $tasks["Baking"] . "<br>";
+
+        // Prints the Array (shows the index & values)
+        print_r($tasks); // Array ( [Laundry] => Roni [Paying bills] => Dimi [Baking] => Janika [Dishes] => Mankka )
+        echo "<br>";
+        
+        // We can see the amount of indexes inside of our Array.
+        // This is used for grabbing data from a database.
+        // As we receive data from DB it is returned as an Array.
+        // So we can check if we actually received any data.
+        echo count($tasks) . "<br>";
+        
+        // We can sort an Array decending.
+    //    sort($tasks); <-- This sorts it.
+        print_r($tasks); // Array ( [0] => Dimi [1] => Janika [2] => Mankka [3] => Roni )
+        echo "<br>";
+
+
+
+        // This is how we add data inside of Asociate Array
+        $tasks["dusting"] = "Jussi";
+        print_r($tasks); // Array ( Roni [Paying bills] => Dimi [Baking] => Janika [Dishes] => Mankka [dusting] => Jussi )
+        echo "<br>";
+        
+        
+
+
+
+// Array in side of Array "Multi dimensional array"
+    echo "<br>";
+    echo "<h2><b>Array in side of Array</b></h2>";
+
+        $food = [
+        array("steak", "pork"), // Array inside of array
+        "fruits" => array("apple", "banana", "cherry"), // Here array gets a name "fruits"
+        ];
+        
+        // We need to add another [] if we want to print array index thats inside of another array
+        echo $food[0][1] . "<br>"; // This prints out pork
+        echo $food["fruits"][2] . "<br>"; // We can change the first "index" to an array we want to use. Here its fruits. which prints cherry
+
+
+
+// Built-in Functions
+echo "<br>";
+echo "<h2><b>Built-in Functions</b></h2>";
+
+
+    echo "<br>";
+    echo "<h3><b>String Functions</b></h3>";
+
+        $s1 = "Hello World!";
+
+        echo strlen($s1) . "<br>"; // strlrn() tells us how many char are there in the string
+
+        echo strpos($s1, "o") . "<br>"; // We can get the specific position of a certain char.
+        echo strpos($s1, "Wo") . "<br>"; // We can get the position of multiple chars.
+        // str_replace("word to replace", "word that replaces it", string where it happens)
+        echo str_replace("World!", "MyyrYork!", $s1) . "<br>"; // We can replace words inside of our string.
+
+        echo strtolower($s1) . "<br>"; // Everything to lower case
+
+        echo strtoupper($s1) . "<br>"; // Everything to upper case
+
+        // (From where, index we start from, how many chars)
+        echo substr($s1, 2, 2) . "<br>"; // We start from index 2 and grab 2 chars
+
+        echo substr($s1, 2, -2) . "<br>"; // With -2 we remove the first two chars
+
+
+        //print_r stands for print_readable
+        // Prints data in readable format
+        print_r(explode(" ", $s1)); // We divide the word from the " " (space), and then divide it into two so arrays.
+        // this could be used for example dividing information from emails.
+        // firstname.lastname@test.fi
+        //explode"."
+        //explode"@"
+
+
+// Math Functions
+    echo "<br>";
+    echo "<h3><b>Math Functions</b></h3>";
+
+        $n1 = -5.5;
+        $n2 = 2;
+        $n3 = 16;
+
+        // abs = absolute value
+        echo abs($n1) . "<br>";
+
+        // Rounds the number up to the closest full number
+        echo round($n1) . "<br>";
+
+
+        // Power of. (value we want to multiply by itself, the value how many times we do it)
+        echo pow($n2, 3) . "<br>";
+
+        // Square of.
+        echo sqrt($n3) . "<br>";
+
+        // We get a random number between 1 & 100.
+        echo rand(1, 100) . "<br>";
+
+
+    
+// Array functions
+    echo "<br>";
+    echo "<h3><b>Array Functions</b></h3>";
+
+
+        $a1 = ["test1", "testi2", "testi3"];
+        $a2 = ["1testi", "2testi", "3testi"];
+
+
+        echo count($a1) . "<br>"; // Shows us how many pieces of data is inside this array.
+
+        echo is_array($a1) . "<br>"; // Will return 1 or 0, as true or false. If the asked value is array we get 1. if not we get 0.
+
+        array_push($a1, "testi4"); // This will add testi4 to our array.
+        print_r($a1);
+        echo "<br>";
+
+        array_pop($a1); // Removes the last index in array.
+        print_r($a1);
+        echo "<br>";
+
+        
+        print_r(array_reverse($a1)); // Reverses the array
+        echo "<br>";
+
+        print_r(array_merge($a1, $a2)); // Merges the arrays together. (The array is added to the end.)
+        echo "<br>";
+
+
+// Time and date
+    echo "<br>";
+    echo "<h3><b>Time & Date</b></h3>";
+
+        // Shows the current date and time.
+        echo date("Y-m-d H:i:s") . "<br>";
+
+
+        // Shows the seconds from 1/1/1970 00:00:00 GMT
+        echo time() . "<br>";
+
+
+        // We can see the amount of seconds from 1/1/1970 to time we set in $date.
+        $date = "2000-04-22 12:00:00";
+        echo strtotime($date) . "<br>";
+
+
+
+// User defined Functions (objects)
+echo "<br>";
+echo "<h2><b>User defined Functions (objects)</b></h2>";
+
+
+    echo "<br>";
+    echo "<h3><b>String Functions</b></h3>";
+
+    // Function is meant to do ONLY ONE THING
+
+    
 
         ?>
     </main>
