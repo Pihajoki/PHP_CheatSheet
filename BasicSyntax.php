@@ -383,9 +383,9 @@ echo "<h2><b>Arrays</b></h2>";
 
 
 
-    // Asociate Array
+    // Associative Array
         echo "<br>";
-        echo "<h2><b>Asociate Array</b></h2>";
+        echo "<h2><b>Associative Array</b></h2>";
 
         $tasks = [
             "Laundry" => "Roni",
@@ -612,6 +612,172 @@ echo "<h2><b>User defined Functions (objects)</b></h2>";
     }
 
     echo saarenmaa() . "<br>";
+
+
+
+
+// Scopes
+echo "<br>";
+echo "<h2><b>Scopes</b></h2>";
+
+
+    echo "<br>";
+    echo "<h3><b>Global Scope</b></h3>";
+    // We can access global variables anywhere, but functions/classes.
+    // To access them we need to call them with global tag infront of them
+
+    $GlobalVar = "This is Global";
+
+// NOT THE CORRECT WAY
+    function myGlobalFunction(){
+        return $GLOBALS["GlobalVar"]; // You do this only if you really need to do it.
+    } echo myGlobalFunction() . "<br>";
+
+// CORRECT WAY
+    function trueGlobalFunction($GlobalVar) {
+        return $GlobalVar;
+    } echo trueGlobalFunction($GlobalVar);
+
+
+
+    echo "<br>";
+    echo "<h3><b>Local Scope</b></h3>";
+
+        function myLocalFunction() {
+        // Define a local variable
+        $localVar = "Local Variable";
+
+        // Use the local variable
+        return $localVar;
+    } echo myLocalFunction();
+
+
+
+
+    echo "<br>";
+    echo "<h3><b>Static Scope</b></h3>";
+
+        function myStaticFunction(){
+        // Declare a static Variable
+        static $staticVar = 0; // Now that its static it will grow with increment.
+        // Without static it would just print 1, 1 ,1 instead of 1, 2, 3
+
+        // Increment the static variable
+        $staticVar++;
+
+        // Use the static variable
+        return $staticVar;
+        }
+        echo myStaticFunction() . "<br>"; // 1
+        echo myStaticFunction() . "<br>"; // 2
+        echo myStaticFunction() . "<br>"; // 3
+
+
+
+    echo "<br>";
+    echo "<h3><b>Class Scope</b></h3>";
+
+        class MyClass { // Define a class
+    // The property and method are only accessable inside the class
+            public $classVar = "Hello World!"; // public property(Not a variable)
+
+
+            public function methodInClass(){ // public method(Not a function)
+                echo $this->classVar; // Prints nothing (?)
+            }
+    
+        }
+
+
+
+
+
+// Constants
+echo "<br>";
+echo "<h2><b>Constants</b></h2>";
+
+        define("PI", 3.14); // We use PI because we want to always keep this at 3.14
+        define("NAME", "Roni");
+        define("IS_ADMIN", true);
+
+        echo PI . "<br>";
+        echo NAME . "<br>";
+        echo IS_ADMIN . "<br>";
+        // Notice we dont need $
+        // Constant should be ALL CAPS
+
+        function testF() {
+            echo NAME; // We can call Constants in functions!!! (Also dont fucking echo in functions)
+        }
+
+        testF(); // Just testing
+
+
+
+// Loops
+echo "<br>";
+echo "<h2><b>Loops</b></h2>";
+
+
+    echo "<br>";
+    echo "<h3><b>FOR - LOOP</b></h3>";
+
+        for ($i2 = 0; $i2 <= 2; $i2++) {
+            $j2 = 1 + $i2;
+            echo "Iteration: " . $j2 . "<br>";
+        }
+
+        echo "<br>";
+        $forArvo = 2;
+
+        for ($i3 = 0; $i3 <= $forArvo; $i3++) {
+            $j3 = 1 + $i3;
+            echo "ForArvo: " . $j3 . "<br>";
+        }
+
+
+    echo "<br>";
+    echo "<h3><b>WHILE - LOOP</b></h3>";
+
+
+        $bools = true;
+        $whileArvo = 5;
+        while ($whileArvo < 10) {
+            echo $whileArvo . "<br>";
+            $whileArvo++;
+        }
+
+    echo "<br>";
+    echo "<h3><b>DO - WHILE - LOOP</b></h3>";
+
+        $bools = true;
+        $whileArvo = 5;
+        do {
+            echo $whileArvo . "<br>";
+            $whileArvo++;
+        } while ($whileArvo < 10);
+
+    echo "<br>";
+    echo "<h3><b>ForEach - LOOP</b></h3>";
+
+// For INDEX ARRAY
+        $eachArray = ["Apple", "Banana", "Orange"];
+
+        foreach ($eachArray as $eA) {
+            echo "This is a fruit called " . $eA . "<br>";
+        }
+
+        echo "<br>";
+
+// For Associative Array
+
+        $assoArray = array ("Apple" => "Red", "Banana" => "Yellow", "Orange" => "Orange");
+
+        foreach ($assoArray as $eA1 => $color) {
+            echo "This is a fruit called " . $eA1 . ", and its color is " . $color . "<br>";
+        }
+
+
 
         ?>
     </main>

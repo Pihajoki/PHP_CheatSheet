@@ -1,0 +1,1 @@
+<!-- Tee funktio, joka tulostaa parametrina saamansa tekstin punaisella. Teksti annetaan HTML-lomakkeella. -->
