@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1); // Forces our function to use data we mean it to use.
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html> <!--Roni Pihajoki-->
 <html lang="en">
 <head>
     <title>Cheat Sheet</title>
@@ -760,7 +760,7 @@ echo "<h2><b>Loops</b></h2>";
     echo "<br>";
     echo "<h3><b>ForEach - LOOP</b></h3>";
 
-// For INDEX ARRAY
+// ForEach INDEX ARRAY
         $eachArray = ["Apple", "Banana", "Orange"];
 
         foreach ($eachArray as $eA) {
@@ -769,7 +769,7 @@ echo "<h2><b>Loops</b></h2>";
 
         echo "<br>";
 
-// For Associative Array
+// ForEach Associative Array
 
         $assoArray = array ("Apple" => "Red", "Banana" => "Yellow", "Orange" => "Orange");
 

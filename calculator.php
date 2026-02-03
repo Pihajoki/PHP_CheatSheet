@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!-- -->
+<!DOCTYPE html> <!--Roni Pihajoki-->
 <head>
     <title>CALCULATOR</title>
     <link rel="stylesheet" href="css/main.css">

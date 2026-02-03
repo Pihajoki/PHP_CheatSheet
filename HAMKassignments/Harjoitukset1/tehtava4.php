@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--Roni Pihajoki-->
 <html lang="en">
 <head>
     <title>Tehtava4</title>
@@ -34,6 +34,9 @@
                         echo "Great pick! Our numbers are the same.";
                         echo "<br>";
                         break;
+                
+                    default:
+                    echo "Error.";
                 }
     }
 
