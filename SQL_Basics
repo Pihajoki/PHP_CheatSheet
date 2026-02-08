@@ -1,0 +1,64 @@
+# ID ROW
+CREATE TABLE users (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+	pwd VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIME,
+    PRIMARY KEY (id)
+);
+
+# COMMENTS OF USERS (With foreign key)
+CREATE TABLE comments (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+    comment_text TEXT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIME, 
+    users_id INT(11),
+    PRIMARY KEY (id),
+    FOREIGN KEY(users_id) REFERENCES users (id) ON DELETE NO ACTION
+);
+#     FOREIGN KEY(users_id) REFERENCES users (id) ON DELETE NO CASCADE
+#                                               Cascade deletes all comments
+#    FOREIGN KEY(users_id) REFERENCES users (id) ON DELETE NO SET NULL
+#                                               Sets the colum to null when user is deleted
+
+
+# Insert data:
+INSERT INTO users (username, pwd, email) VALUES ('Pihajoki', 'test123', 'test@test.fi');
+
+
+# Changing/Updating data
+UPDATE users SET username = 'dimiKGB', pwd = 'dimi456' WHERE id = 2
+# If we dont know the id
+UPDATE users SET username = 'dimiKGB', pwd = 'dimi456' WHERE username = 'Viitakoski' AND pwd = 'test321';
+# We can change password of two users
+UPDATE users SET username = 'dimiKGB', pwd = 'dimi456' WHERE username = 'Viitakoski' OR username = 'Pihajoki';
+
+
+# Deleting data from the data base
+DELETE FROM users WHERE id = 2;
+
+
+
+# Selects everything from comments where id is 3.
+SELECT * FROM comments WHERE users_id = 3;
+
+# Selects username, comment_text from comments where id is 3.
+SELECT username, comment_text FROM comments WHERE users_id = 3;
+
+
+
+# Inner join
+SELECT * FROM users INNER JOIN comments ON  users.id = comments.users_id;
+
+# Still inner Join
+SELECT users.username, comments.comment_text, comments.created_at FROM users INNER JOIN comments ON  users.id = comments.users_id;
+
+
+# Left Join // We see all the usersm even tho they have not made comments
+SELECT * FROM users LEFT JOIN comments ON  users.id = comments.users_id;
+
+# Right Join // We see all comments made, even if there is no user
+SELECT * FROM users RIGHT JOIN comments ON users.id = comments.users_id;
+
